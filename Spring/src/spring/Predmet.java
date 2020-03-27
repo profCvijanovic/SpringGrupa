@@ -2,9 +2,18 @@ package spring;
 
 public class Predmet {
 	
-	
-	public String mojPredmet(String predmetKojiPredajem) {
-		return "Ja predajem" +predmetKojiPredajem;
+	private String imePredmeta;
+		
+	public String getImePredmeta() {
+		return imePredmeta;
+	}
+
+	public void setImePredmeta(String imePredmeta) {
+		this.imePredmeta = imePredmeta;
+	}
+
+	public String mojPredmet() {
+		return "Ja predajem" + getImePredmeta();
 	}
 
 }

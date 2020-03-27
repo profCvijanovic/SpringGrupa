@@ -22,7 +22,7 @@ public class ProfesorMatematike implements Profesor {
 
 	@Override
 	public String predmetKojiPredajem() {
-		return predmet.mojPredmet(" algebra");
+		return predmet.mojPredmet();
 	}
 	
 	

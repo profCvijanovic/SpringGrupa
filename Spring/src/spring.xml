@@ -5,17 +5,36 @@
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<!-- <context:property-placeholder location="mojPropertifajl.properties"/> -->
+	<context:property-placeholder location="imenaProfesora.properties"/> 
 	
-	<bean id="matematicar" class="spring.ProfesorMatematike">
-		<constructor-arg name="predmet" ref ="mojPredmet" /> <!-- Constructor injection  -->
+	<bean id="matematicar" class="spring.ProfesorMatematike" scope="prototype">
+		<constructor-arg name="predmet" ref ="matematika" /> <!-- Constructor injection  -->
 	</bean>
 	
-	<bean id="hemicar" class="spring.ProfesorHemije">
-		<property name="predmet" ref = "mojPredmet"/> <!-- Setter injection  -->
+	<bean id="hemicar" 
+		  class="spring.ProfesorHemije" 
+		  scope="singleton" 
+		  init-method="metodZaInit"
+		  destroy-method="metodZaDestroy">
+		<property name="ime" value="${hemija.ime}"/>
+		<property name="predmet" ref = "organska"/> <!-- Setter injection  -->
 	</bean>
 	
-    <bean id = "mojPredmet" class="spring.Predmet">
+	<bean id="hemicarNovi" class="spring.ProfesorHemije">
+		<property name="ime" value="${hemija.novi.ime}"/>
+		<property name="predmet" ref = "neorganska"/> <!-- Setter injection  -->
+	</bean>
+	
+    <bean id = "organska" class="spring.Predmet">
+    	<property name="imePredmeta" value="Organska hemija"/>
+    </bean>
+    
+    <bean id = "neorganska" class="spring.Predmet">
+    	<property name="imePredmeta" value="Neorganska hemija"/>
+    </bean>
+    
+    <bean id = "matematika" class="spring.Predmet">
+    	<property name="imePredmeta" value="Geometrija"/>
     </bean>
     
  
